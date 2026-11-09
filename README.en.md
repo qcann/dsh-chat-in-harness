@@ -45,11 +45,12 @@ Restart DSH afterwards. Requires DSH ≥ 0.2.1-rc.1 and Node ≥ 20.
 ## Known limits
 
 - **Desktop only.** The web build has no `<webview>` host.
+- **Platform.** Verified on Windows. macOS and Linux are untested — the package contains no platform-specific APIs (no `node:` modules, no filesystem access), but identical behavior is not guaranteed.
 - **Restarting DSH requires logging in again.** The browser lease is an in-memory partition, so cookies are not persisted. That is DSH's behavior; this plugin does not work around it.
 - **DSH shortcuts do not work while the page has focus.** Keystrokes go to the guest.
 - **Layering.** The window sits at `z-index: 60`: menus (100) and modals (1000) cover it. It shares a layer with DSH's own floating panel and paints above it by DOM order.
 - **Link allowlist.** Only `deepseek.com` and its subdomains stay inside the guest; everything else opens in the system browser.
-- **In-page "Copy" buttons do not work.** DSH denies clipboard permissions to browser guests, so `navigator.clipboard` is blocked. Selecting text and pressing `Ctrl+C` works — that uses the native copy path.
+- **In-page "Copy" buttons do not work.** DSH denies clipboard permissions to browser guests, so `navigator.clipboard` is blocked. Selecting text and pressing `Ctrl+C` (`Cmd+C` on macOS) works — that uses the native copy path.
 
 ## Risk notice
 

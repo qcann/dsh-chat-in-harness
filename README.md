@@ -34,11 +34,12 @@ dsh plugin --profile desktop add <本目录或 tgz>
 ## 已知边界
 
 - **仅桌面端**：Web 版没有 `<webview>` 宿主。
+- **平台**：Windows 已实测；macOS / Linux 未实机验证。代码不含任何平台特定 API（无 `node:` 模块、无文件系统访问），但也不承诺与 Windows 完全一致。
 - **重启 DSH 要重新登录**：浏览器租约是进程内分区，cookie 不落盘。这是 DSH 的行为，本插件不绕。
 - **焦点在网页里时，DSH 快捷键不生效**。
 - **层级**：浮窗在 `z-index: 60`，会被菜单（100）与模态框（1000）盖住；与 DSH 自己的浮窗同层，靠 DOM 顺序压在其上。
 - **链接白名单**：只放行 `deepseek.com` 及子域，其余交给系统浏览器。
-- **网页里的「复制」按钮不可用**：DSH 拒绝浏览器 guest 的剪贴板权限（`navigator.clipboard` 被拦）。选中文字后按 `Ctrl+C` 正常，走的是原生复制路径。
+- **网页里的「复制」按钮不可用**：DSH 拒绝浏览器 guest 的剪贴板权限（`navigator.clipboard` 被拦）。选中文字后按 `Ctrl+C`（macOS 为 `Cmd+C`）正常，走的是原生复制路径。
 
 ## 风险声明
 
