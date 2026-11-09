@@ -41,7 +41,8 @@
     "LICENSE",
     "locale/*.json",
     "icon.svg",
-    "README.en.md"
+    "README.en.md",
+    "assets/icon-180.png"
   ],
   "dsh": {
     "manifestVersion": 1,
