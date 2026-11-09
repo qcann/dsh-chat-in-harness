@@ -40,7 +40,8 @@
     "README.md",
     "LICENSE",
     "locale/*.json",
-    "icon.svg"
+    "icon.svg",
+    "README.en.md"
   ],
   "dsh": {
     "manifestVersion": 1,

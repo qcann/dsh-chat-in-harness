@@ -1,5 +1,7 @@
 # Chat in Harness
 
+> English version: [README.en.md](README.en.md)
+
 把 `chat.deepseek.com` 装进一个与会话无关的浮窗。用 DSH 自带的浏览器桥拿租约、创建 `<webview>`、顶层导航到官网——页面里的一切都交给官网自己跑。
 
 ## 它不做什么
