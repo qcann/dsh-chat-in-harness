@@ -38,6 +38,7 @@ dsh plugin --profile desktop add <本目录或 tgz>
 - **焦点在网页里时，DSH 快捷键不生效**。
 - **层级**：浮窗在 `z-index: 60`，会被菜单（100）与模态框（1000）盖住；与 DSH 自己的浮窗同层，靠 DOM 顺序压在其上。
 - **链接白名单**：只放行 `deepseek.com` 及子域，其余交给系统浏览器。
+- **网页里的「复制」按钮不可用**：DSH 拒绝浏览器 guest 的剪贴板权限（`navigator.clipboard` 被拦）。选中文字后按 `Ctrl+C` 正常，走的是原生复制路径。
 
 ## 风险声明
 

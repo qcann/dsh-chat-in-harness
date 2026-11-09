@@ -49,6 +49,7 @@ Restart DSH afterwards. Requires DSH ≥ 0.2.1-rc.1 and Node ≥ 20.
 - **DSH shortcuts do not work while the page has focus.** Keystrokes go to the guest.
 - **Layering.** The window sits at `z-index: 60`: menus (100) and modals (1000) cover it. It shares a layer with DSH's own floating panel and paints above it by DOM order.
 - **Link allowlist.** Only `deepseek.com` and its subdomains stay inside the guest; everything else opens in the system browser.
+- **In-page "Copy" buttons do not work.** DSH denies clipboard permissions to browser guests, so `navigator.clipboard` is blocked. Selecting text and pressing `Ctrl+C` works — that uses the native copy path.
 
 ## Risk notice
 
