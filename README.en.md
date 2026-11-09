@@ -30,14 +30,16 @@ The UA change exists because the site otherwise flags the Electron container as 
 
 ## Install
 
+From the repository (follows the default branch):
+
 ```powershell
 dsh plugin --profile desktop add https://github.com/qcann/dsh-chat-in-harness
 ```
 
-Or from a release tarball:
+Or the prebuilt release package (`latest` always points at the newest release):
 
 ```powershell
-dsh plugin --profile desktop add https://github.com/qcann/dsh-chat-in-harness/releases/download/v1.0.0/dsh-chat-in-harness-1.0.0.tgz
+dsh plugin --profile desktop add https://github.com/qcann/dsh-chat-in-harness/releases/latest/download/dsh-chat-in-harness.tgz
 ```
 
 Restart DSH afterwards. Requires DSH ≥ 0.2.1-rc.1 and Node ≥ 20.

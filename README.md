@@ -6,12 +6,15 @@
 
 ## 它不做什么
 
+这一节比上面重要。
+
 | 不做 | 说明 |
 |---|---|
 | 不调接口 | 不碰 `/api/v0/*`，不构造请求，不解析响应 |
 | 不存凭据 | 不读 cookie / localStorage，不做快照，不重放登录态 |
 | 不注入脚本 | 一次都不注入，也不执行任何脚本 |
 | 不改指纹 | 只从 UA 去掉 `Electron/x.y.z`，其余原样 |
+| 不批量操作 | 没有并发、没有队列、没有重试风暴 |
 
 UA 那一处是为了避免官网把 Electron 容器误判为「环境异常」，是全插件唯一的例外。
 
@@ -25,8 +28,16 @@ UA 那一处是为了避免官网把 Electron 容器误判为「环境异常」�
 
 ## 安装
 
+从仓库安装（跟随默认分支）：
+
 ```powershell
-dsh plugin --profile desktop add <本目录或 tgz>
+dsh plugin --profile desktop add https://github.com/qcann/dsh-chat-in-harness
+```
+
+或用 Release 里的预构建包（`latest` 始终指向最新版本）：
+
+```powershell
+dsh plugin --profile desktop add https://github.com/qcann/dsh-chat-in-harness/releases/latest/download/dsh-chat-in-harness.tgz
 ```
 
 装完重启 DSH。要求 DSH ≥ 0.2.1-rc.1、Node ≥ 20。
