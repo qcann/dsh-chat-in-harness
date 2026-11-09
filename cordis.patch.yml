@@ -1,0 +1,6 @@
+# Bundle 装配层：插入一条 loader 记录。
+# 宿主侧入口只做占位（lib/index.js），真正的界面在 lib/client.js，
+# 由 package.json 的 dsh.client 声明让 Web 客户端加载。
+- insert:
+    - id: dsh-chat-in-harness
+      name: dsh-chat-in-harness

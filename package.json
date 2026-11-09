@@ -1,0 +1,55 @@
+{
+  "name": "dsh-chat-in-harness",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A session-independent floating window for chat.deepseek.com inside DeepSeek Harness Desktop.",
+  "license": "MIT",
+  "author": "qcann",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qcann/dsh-chat-in-harness.git"
+  },
+  "homepage": "https://github.com/qcann/dsh-chat-in-harness",
+  "bugs": {
+    "url": "https://github.com/qcann/dsh-chat-in-harness/issues"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek",
+    "deepseek-harness",
+    "chat",
+    "webview",
+    "float"
+  ],
+  "engines": {
+    "node": ">=20",
+    "dsh": ">=0.2.1-rc.1"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json",
+    "./icon.svg": "./icon.svg",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "locale/*.json",
+    "icon.svg"
+  ],
+  "dsh": {
+    "manifestVersion": 1,
+    "client": {
+      "platform": "web"
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "icon": "./icon.svg"
+}

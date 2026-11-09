@@ -1,0 +1,16 @@
+# 依赖
+node_modules/
+
+# 打包产物
+*.tgz
+*.tar.gz
+
+# 本地调试
+tmp/
+*.log
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
