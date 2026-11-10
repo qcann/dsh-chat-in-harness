@@ -13,7 +13,7 @@ This section matters more than the one above.
 | Not | Why |
 |---|---|
 | No API calls | Never touches `/api/v0/*`, builds no requests, parses no responses |
-| No credential storage | Never reads cookies or localStorage, no snapshots, no login replay |
+| No credential storage | Never reads the page's cookies or localStorage, no snapshots, no login replay; only layout (position, size, zoom, opacity) is kept in DSH's own localStorage |
 | No script injection | Never injects or executes anything inside the page |
 | No fingerprint spoofing | Only strips `Electron/x.y.z` from the UA, everything else untouched |
 | No bulk operations | No concurrency, no queues, no retry storms |
@@ -52,6 +52,7 @@ Restart DSH afterwards. Requires DSH ≥ 0.2.1-rc.1 and Node ≥ 20.
 - **DSH shortcuts do not work while the page has focus.** Keystrokes go to the guest.
 - **Layering.** The window sits at `z-index: 60`: menus (100) and modals (1000) cover it. It shares a layer with DSH's own floating panel and paints above it by DOM order.
 - **Link allowlist.** Only `deepseek.com` and its subdomains stay inside the guest; everything else opens in the system browser.
+- **Switching accounts.** There is no logout button: use the site's own sign-out inside the window, or restart DSH (the partition is in memory, so a restart starts clean).
 - **In-page "Copy" buttons do not work.** DSH denies clipboard permissions to browser guests, so `navigator.clipboard` is blocked. Selecting text and pressing `Ctrl+C` (`Cmd+C` on macOS) works — that uses the native copy path.
 
 ## Risk notice
