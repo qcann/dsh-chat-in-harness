@@ -4,6 +4,8 @@
 
 把 `chat.deepseek.com` 装进一个与会话无关的浮窗。用 DSH 自带的浏览器桥拿租约、创建 `<webview>`、顶层导航到官网——页面里的一切都交给官网自己跑。
 
+<img src="assets/screenshot-window.png" alt="浮窗里打开的是 chat.deepseek.com 的官网登录页" width="380">
+
 ## 它不做什么
 
 这一节比上面重要。

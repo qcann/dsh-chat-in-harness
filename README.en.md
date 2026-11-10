@@ -6,6 +6,8 @@ A floating window for `chat.deepseek.com` inside DeepSeek Harness Desktop — in
 
 It takes a browser lease from DSH, creates a `<webview>`, and navigates it to the official page. Everything that happens inside — login, PoW, streaming, uploads, fingerprinting — is the site's own code running as usual.
 
+<img src="assets/screenshot-window.png" alt="The floating window showing the official chat.deepseek.com sign-in page" width="380">
+
 ## What it does not do
 
 This section matters more than the one above.
