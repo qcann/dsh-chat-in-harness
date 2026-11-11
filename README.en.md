@@ -28,6 +28,7 @@ The UA change exists because the site otherwise flags the Electron container as 
 - Drag, resize, remember position; double-click the title bar or use the button to maximize/restore; edge snapping
 - `×` hides the window: collapses into the floating ball when enabled, otherwise disappears
 - Chat capsule in the sidebar footer; settings page with two toggles (sidebar entry, floating ball), a status card (size / zoom / opacity) and a reset button
+- `/chat` in the composer opens the window: a client-side action that sends no message and costs no model call
 - UI language follows DSH: Chinese when the app is Chinese, English otherwise
 
 ## Install

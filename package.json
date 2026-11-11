@@ -1,6 +1,6 @@
 {
   "name": "dsh-chat-in-harness",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "type": "module",
   "description": "A session-independent floating window for chat.deepseek.com inside DeepSeek Harness Desktop.",
   "license": "MIT",
