@@ -2,9 +2,7 @@
 
 > 中文版见 [README.md](README.md)
 
-A floating window for `chat.deepseek.com` inside DeepSeek Harness Desktop — independent of any conversation.
-
-It takes a browser lease from DSH, creates a `<webview>`, and navigates it to the official page. Everything that happens inside — login, PoW, streaming, uploads, fingerprinting — is the site's own code running as usual.
+`chat.deepseek.com` in a floating window that survives conversation switches. The plugin takes a browser lease from DSH, creates a `<webview>` and navigates it to the official page — everything inside is the site's own code, running as usual.
 
 <img src="assets/screenshot-window.png" alt="The floating window showing the official chat.deepseek.com sign-in page" width="380">
 
@@ -14,32 +12,32 @@ This section matters more than the one above.
 
 | Not | Why |
 |---|---|
-| No API calls | Never touches `/api/v0/*`, builds no requests, parses no responses |
-| No credential storage | Never reads the page's cookies or localStorage, no snapshots, no login replay; only layout (position, size, zoom, opacity) is kept in DSH's own localStorage |
-| No script injection | Never injects or executes anything inside the page |
-| No fingerprint spoofing | Only strips `Electron/x.y.z` from the UA, everything else untouched |
-| No bulk operations | No concurrency, no queues, no retry storms |
+| No API calls | Never touches `/api/v0/*`; builds no requests, parses no responses |
+| No credential storage | Never reads cookies or localStorage, no snapshots, no login replay; only window layout lives in DSH's own localStorage |
+| No script injection | Never injects or executes anything in the page |
+| No fingerprint spoofing | Only strips `Electron/x.y.z` from the UA |
+| No bulk operations | No concurrency, queues or retries |
 
-The UA change exists because the site otherwise flags the Electron container as an abnormal environment. It is the only exception in the whole plugin.
+The UA change is the only exception: without it the site flags the Electron container as abnormal.
 
 ## Features
 
 - Two-row header: title (whale + Chat / zoom / opacity / maximize / hide) and navigation (back / forward / reload / address / open in browser)
-- Drag, resize, remember position; double-click the title bar or use the button to maximize/restore; edge snapping
+- Drag, resize, remember position, edge snapping; double-click the title bar or press the button to maximize
 - `×` hides the window: collapses into the floating ball when enabled, otherwise disappears
-- Chat capsule in the sidebar footer; settings page with two toggles (sidebar entry, floating ball), a status card (size / zoom / opacity) and a reset button
-- `/chat` in the composer opens the window: a client-side action that sends no message and costs no model call
-- UI language follows DSH: Chinese when the app is Chinese, English otherwise
+- Chat capsule in the sidebar footer; a settings page with two toggles, a status card and a reset button
+- `/chat` opens the window from the composer — no message sent, no model call spent
+- UI language follows DSH; anything but Chinese shows English
 
 ## Install
 
-From the repository (follows the default branch):
+Follow the default branch:
 
 ```powershell
 dsh plugin --profile desktop add https://github.com/qcann/dsh-chat-in-harness
 ```
 
-Or the prebuilt release package (`latest` always points at the newest release):
+Or the prebuilt release package (`latest` points at the newest release):
 
 ```powershell
 dsh plugin --profile desktop add https://github.com/qcann/dsh-chat-in-harness/releases/latest/download/dsh-chat-in-harness.tgz
@@ -50,20 +48,18 @@ Restart DSH afterwards. Requires DSH ≥ 0.2.1-rc.1 and Node ≥ 20.
 ## Known limits
 
 - **Desktop only.** The web build has no `<webview>` host.
-- **Platform.** Verified on Windows. macOS and Linux are untested — the package contains no platform-specific APIs (no `node:` modules, no filesystem access), but identical behavior is not guaranteed.
-- **Restarting DSH requires logging in again.** The browser lease is an in-memory partition, so cookies are not persisted. That is DSH's behavior; this plugin does not work around it.
-- **DSH shortcuts do not work while the page has focus.** Keystrokes go to the guest.
-- **Esc closes the window only while the panel chrome (title bar or border) has focus.** Keys inside the page belong to the page: the plugin injects no scripts and cannot intercept keyboard events in the webview.
-- **Layering.** The window sits at `z-index: 60`: menus (100) and modals (1000) cover it. It shares a layer with DSH's own floating panel and paints above it by DOM order.
-- **Link allowlist.** Only `deepseek.com` and its subdomains stay inside the guest; everything else opens in the system browser.
-- **Switching accounts.** There is no logout button: use the site's own sign-out inside the window, or restart DSH (the partition is in memory, so a restart starts clean).
-- **In-page "Copy" buttons do not work.** DSH denies clipboard permissions to browser guests, so `navigator.clipboard` is blocked. Selecting text and pressing `Ctrl+C` (`Cmd+C` on macOS) works — that uses the native copy path.
+- **Platform.** Tested on Windows only; macOS and Linux are unverified. No platform-specific APIs are used (no `node:` modules, no filesystem access), but identical behavior is not promised.
+- **Restart signs you out.** The lease is an in-memory partition, so cookies are not persisted — DSH's behavior, not ours. For the same reason there is no logout button: use the site's own sign-out, or restart.
+- **DSH shortcuts and Esc do nothing while the page has focus.** Keys belong to the page; the plugin injects no scripts and cannot intercept keyboard events in the webview. Esc closes the window only from the title bar or border.
+- **Layering.** `z-index: 60`: menus (100) and modals (1000) cover it. It shares a layer with DSH's own floating panel and paints above it by DOM order.
+- **Link allowlist.** Only `deepseek.com` and its subdomains stay in the guest; everything else opens in the system browser.
+- **In-page "Copy" buttons fail.** DSH denies clipboard permissions to guests. Select and press `Ctrl+C` (`Cmd+C` on macOS) — the native path works.
 
 ## Risk notice
 
-- Unofficial project. Not affiliated with DeepSeek. The icon is an original drawing, not the official mark.
-- No proxying, no forwarding, no data storage. Whether accessing the site through a third-party container complies with its terms is your call.
-- Use at your own risk: rate limits, site changes and DSH upgrades can all break it.
+- Unofficial project, not affiliated with DeepSeek. The icon is an original drawing, not the official mark.
+- No proxying, forwarding or data storage. Whether a third-party container complies with the site's terms is your call.
+- Rate limits, site changes and DSH upgrades can break it. Use at your own risk.
 
 ## Philosophy: restraint
 
