@@ -53,7 +53,7 @@ Restart DSH afterwards. Requires DSH ≥ 0.2.1-rc.1 and Node ≥ 20.
 - **Platform.** Verified on Windows. macOS and Linux are untested — the package contains no platform-specific APIs (no `node:` modules, no filesystem access), but identical behavior is not guaranteed.
 - **Restarting DSH requires logging in again.** The browser lease is an in-memory partition, so cookies are not persisted. That is DSH's behavior; this plugin does not work around it.
 - **DSH shortcuts do not work while the page has focus.** Keystrokes go to the guest.
-- **Esc closes the window only while the panel chrome (title bar or border) has focus.** Keys inside the page belong to the page: the plugin injects no scripts and cannot intercept keyboard events in the webview. For what it is worth, chat.deepseek.com does not bind Esc to "stop generating" — stopping is a button in the composer.
+- **Esc closes the window only while the panel chrome (title bar or border) has focus.** Keys inside the page belong to the page: the plugin injects no scripts and cannot intercept keyboard events in the webview.
 - **Layering.** The window sits at `z-index: 60`: menus (100) and modals (1000) cover it. It shares a layer with DSH's own floating panel and paints above it by DOM order.
 - **Link allowlist.** Only `deepseek.com` and its subdomains stay inside the guest; everything else opens in the system browser.
 - **Switching accounts.** There is no logout button: use the site's own sign-out inside the window, or restart DSH (the partition is in memory, so a restart starts clean).
